@@ -1,0 +1,17 @@
+{
+  "id": "release-safety-v1",
+  "rules": [
+    {
+      "id": "reversible_migration",
+      "title": "Migration must preserve a rollback path",
+      "severity": "failure",
+      "instructions": "Does an added migration or destructive data change lack an explicit reversible path in the changed evidence?"
+    },
+    {
+      "id": "auth_change_reviewed",
+      "title": "Authentication behavior needs owner review",
+      "severity": "warning",
+      "instructions": "Do the added lines materially change authentication or authorization without evidence of an explicit owner review requirement?"
+    }
+  ]
+}

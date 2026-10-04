@@ -1,0 +1,10 @@
+{
+  "name": "jev-semantic-merge-gate",
+  "version": "0.1.0",
+  "description": "Declared semantic merge policies with exact changed-line evidence",
+  "type": "module",
+  "scripts": { "test": "node --test", "check": "node --check src/*.js && node --test", "demo": "node src/cli.js --fixture --report-only" },
+  "engines": { "node": ">=20" },
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/gbesse/jev-semantic-merge-gate.git" }
+}

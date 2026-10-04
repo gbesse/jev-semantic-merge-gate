@@ -1,0 +1,19 @@
+name: Jev Semantic Merge Gate
+description: Evaluate declared semantic policies and cite exact changed lines
+branding: { icon: shield, color: purple }
+inputs:
+  policy:
+    description: Path to a policy JSON file
+    default: .jev/policy.json
+  base:
+    description: Base revision
+    default: origin/main
+  threshold:
+    description: Minimum probability before a policy blocks
+    default: "0.75"
+  typesafe-api-key:
+    description: TypeSafe API key
+    required: true
+runs:
+  using: node20
+  main: src/action.js
