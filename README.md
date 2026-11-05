@@ -32,3 +32,12 @@ Rules choose `warning` or `failure`. The action sends only non-empty added lines
 This gate complements tests, linters and security scanners. A probability is not proof of a defect. Keep high-impact rules narrow, measure false positives, and give maintainers an explicit override process. The provider key remains a GitHub secret.
 
 Independent community integration. MIT licensed.
+
+
+## 2026-11-05 — FR / EN / ES
+
+FR : `groupAnnotations(findings)` regroupe les règles visant la même ligne de fichier sans perdre une sévérité failure. Garde la probabilité maximale, sans addition ni nouvelle confiance statistique. API hors ligne ; aucun commentaire GitHub posté.
+
+EN: `groupAnnotations(findings)` groups rules on the same file line without losing failure severity. Keeps maximum probability without adding probabilities or creating statistical confidence. Offline API; no GitHub comment posted.
+
+ES: `groupAnnotations(findings)` agrupa reglas sobre misma línea sin perder severidad failure. Conserva probabilidad máxima sin sumarlas ni crear confianza estadística. API sin red; no publica comentarios GitHub.
