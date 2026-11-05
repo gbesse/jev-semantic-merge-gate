@@ -59,3 +59,10 @@ export function fakeResponse(lines, policy) {
     return [[`${rule.id}__violated`, { type: 'noul', noul: risky ? 0.92 : 0.12 }], [`${rule.id}__evidence`, { type: 'choice', choice: risky?.id ?? fallback }]];
   })), usage: { input_tokens: 40 } };
 }
+
+export function groupAnnotations(findings){
+ const fail=()=>{throw new TypeError('Constats invalides / Invalid findings / Hallazgos inválidos');};
+ if(!Array.isArray(findings)||findings.length>10000)fail();const groups=new Map();
+ for(const f of findings){if(!f||typeof f.file!=='string'||!f.file||!Number.isSafeInteger(f.line)||f.line<1||!['warning','failure'].includes(f.severity)||typeof f.ruleId!=='string'||!Number.isFinite(f.probability)||f.probability<0||f.probability>1)fail();const key=JSON.stringify([f.file,f.line]);const g=groups.get(key)??{file:f.file,line:f.line,severity:'warning',ruleIds:[],maxProbability:0};if(f.severity==='failure')g.severity='failure';if(!g.ruleIds.includes(f.ruleId))g.ruleIds.push(f.ruleId);g.maxProbability=Math.max(g.maxProbability,f.probability);groups.set(key,g);}
+ return [...groups.values()].map(g=>({...g,ruleIds:g.ruleIds.sort()})).sort((a,b)=>a.file.localeCompare(b.file)||a.line-b.line);
+}

@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {groupAnnotations}from '../src/core.js';
+test('same source line groups rules and preserves strongest severity',()=>{const a={file:'a.js',line:2,ruleId:'a',severity:'warning',probability:.8};const x=groupAnnotations([a,{...a,ruleId:'b',severity:'failure',probability:.9},a]);assert.equal(x.length,1);assert.deepEqual(x[0].ruleIds,['a','b']);assert.equal(x[0].severity,'failure');assert.equal(x[0].maxProbability,.9);});
+test('different files never merge',()=>assert.equal(groupAnnotations([{file:'a',line:1,ruleId:'r',severity:'warning',probability:.8},{file:'b',line:1,ruleId:'r',severity:'warning',probability:.8}]).length,2));
